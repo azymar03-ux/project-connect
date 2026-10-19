@@ -1,0 +1,97 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: projectconnect
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+      POSTGRES_DB: projectconnect
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U projectconnect]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+  redis:
+    image: redis:7-alpine
+    command: [redis-server, --appendonly, "yes"]
+    volumes: [redis_data:/data]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+  clamav:
+    image: clamav/clamav:stable
+    volumes: [clamav_signatures:/var/lib/clamav]
+    # Private compose network only. Initial signatures can take minutes to download.
+    healthcheck:
+      test: [CMD, clamcheck.sh]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+      start_period: 180s
+    restart: unless-stopped
+  migrate:
+    build: {context: ..}
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL using postgres host}
+    command: [npm, run, db:migrate]
+    depends_on:
+      postgres: {condition: service_healthy}
+  api:
+    build: {context: ..}
+    command: [npm, run, start:api]
+    env_file: ../.env.production
+    environment:
+      NODE_ENV: production
+      LOCAL_FILE_DIR: /data/files
+      CLAMD_HOST: clamav
+      CLAMD_PORT: 3310
+      REDIS_URL: redis://redis:6379
+      TRUSTED_PROXY_CIDRS: ${EDGE_PROXY_IP:-172.30.10.2}/32
+    volumes: [private_files:/data/files]
+    depends_on:
+      clamav: {condition: service_healthy}
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:3001/api/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 20s
+      timeout: 10s
+      retries: 5
+    restart: unless-stopped
+  web:
+    build: {context: .., args: {INTERNAL_API_URL: 'http://api:3001'}}
+    environment:
+      NODE_ENV: production
+      INTERNAL_API_URL: http://api:3001
+      PUBLIC_APP_URL: ${PUBLIC_APP_URL:?Set PUBLIC_APP_URL}
+    depends_on:
+      api: {condition: service_healthy}
+    restart: unless-stopped
+  proxy:
+    image: caddy:2-alpine
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN:?Set APP_DOMAIN}
+    volumes: ['./Caddyfile:/etc/caddy/Caddyfile:ro',caddy_data:/data,caddy_config:/config]
+    ports: ['80:80','443:443']
+    networks:
+      default:
+        ipv4_address: ${EDGE_PROXY_IP:-172.30.10.2}
+    depends_on: [web]
+    restart: unless-stopped
+volumes:
+  clamav_signatures:
+  redis_data:
+  postgres_data:
+  private_files:
+  caddy_data:
+  caddy_config:
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: ${EDGE_SUBNET:-172.30.10.0/24}

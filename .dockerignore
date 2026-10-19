@@ -1,0 +1,17 @@
+node_modules
+**/.next
+artifacts
+.env
+.env.*
+!.env.example
+.private-files
+screenshots
+test-results
+playwright-report
+.git
+docs/evidence
+.arena
+**/__pycache__
+release.tar.gz
+*.log
+core

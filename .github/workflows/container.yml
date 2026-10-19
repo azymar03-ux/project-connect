@@ -1,0 +1,22 @@
+name: Disposable container smoke
+on: [push, pull_request]
+jobs:
+  containers:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ephemeral keys (not production credentials)
+        run: |
+          echo "CI_CHAT_KEY=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
+          echo "CI_EXPORT_KEY=$(openssl rand -hex 32)" >> "$GITHUB_ENV"
+      - run: docker compose -p pc-ci -f deploy/compose.ci.yml config --quiet
+      - run: docker compose -p pc-ci -f deploy/compose.ci.yml up --build -d --wait --wait-timeout 180
+      - name: Readiness, public build, private denial and non-root runtime
+        run: |
+          curl --fail --retry 12 --retry-delay 2 --retry-connrefused http://localhost:3000/ > /dev/null
+          curl --fail http://localhost:3000/api/ready
+          test "$(curl -s -o /dev/null -w '%{http_code}' http://localhost:3000/api/account/export)" = 401
+          test "$(docker compose -p pc-ci -f deploy/compose.ci.yml exec -T api id -u)" != 0
+      - name: Remove disposable containers and volumes
+        if: always()
+        run: docker compose -p pc-ci -f deploy/compose.ci.yml down --volumes --remove-orphans

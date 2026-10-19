@@ -1,0 +1,21 @@
+{$APP_DOMAIN} {
+  encode zstd gzip
+  header {
+    X-Content-Type-Options nosniff
+    Referrer-Policy same-origin
+    X-Frame-Options DENY
+    Permissions-Policy "camera=(), microphone=()"
+    Strict-Transport-Security "max-age=31536000"
+  }
+  handle /api/* {
+    reverse_proxy api:3001 {
+      flush_interval -1
+      # Client headers cannot choose a different rate-limit bucket.
+      header_up X-Forwarded-For {remote_host}
+    }
+  }
+  handle {
+    reverse_proxy web:3000
+  }
+  # Do not enable access logs containing recovery/verification query tokens.
+}

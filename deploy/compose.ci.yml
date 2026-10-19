@@ -1,0 +1,56 @@
+# Disposable local/CI container smoke only. No production data/domain/secrets.
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: projectconnect
+      POSTGRES_PASSWORD: local_ci_only
+      POSTGRES_DB: projectconnect
+    healthcheck:
+      test: [CMD-SHELL, pg_isready -U projectconnect]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+  migrate:
+    image: projectconnect-ci
+    build: {context: .., args: {INTERNAL_API_URL: 'http://api:3001'}}
+    environment:
+      DATABASE_URL: postgresql://projectconnect:local_ci_only@postgres:5432/projectconnect
+    command: [npm, run, db:migrate]
+    depends_on:
+      postgres: {condition: service_healthy}
+  api:
+    image: projectconnect-ci
+    command: [npm, run, start:api]
+    environment:
+      NODE_ENV: production
+      DATABASE_URL: postgresql://projectconnect:local_ci_only@postgres:5432/projectconnect
+      REDIS_URL: redis://redis:6379
+      PUBLIC_APP_URL: https://localhost
+      APP_ORIGINS: https://localhost
+      CHAT_POSITION_SECRET: ${CI_CHAT_KEY:?ephemeral test key required}
+      EXPORT_CURSOR_SECRET: ${CI_EXPORT_KEY:?ephemeral test key required}
+      LOCAL_FILE_DIR: /data/files
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      redis: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, node, -e, "fetch('http://127.0.0.1:3001/api/ready').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 2s
+      timeout: 5s
+      retries: 30
+  web:
+    image: projectconnect-ci
+    environment:
+      PUBLIC_APP_URL: https://localhost
+      INTERNAL_API_URL: http://api:3001
+    ports: ['127.0.0.1:3000:3000']
+    depends_on:
+      api: {condition: service_healthy}

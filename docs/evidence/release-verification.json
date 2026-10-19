@@ -1,0 +1,12 @@
+{
+  "result": "PASS",
+  "entries": 282,
+  "files": 227,
+  "bytes": 379443,
+  "sha256": "7ae34ad96ea4be55dbada568e064b3a479c134719b6f4c01c52ad80161f1c168",
+  "checks": [
+    "current source parity",
+    "private/dependency/build/log/env exclusions",
+    "root copy checksum"
+  ]
+}

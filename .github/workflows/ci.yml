@@ -1,0 +1,42 @@
+name: ProjectConnect checks
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    services:
+      redis:
+        image: redis:7-alpine
+        ports: ['6379:6379']
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: projectconnect
+          POSTGRES_PASSWORD: test_password
+          POSTGRES_DB: projectconnect
+        ports: ['5432:5432']
+        options: --health-cmd="pg_isready -U projectconnect" --health-interval=10s --health-timeout=5s --health-retries=10
+    env:
+      DATABASE_URL: postgresql://projectconnect:test_password@localhost:5432/projectconnect
+      APP_ORIGINS: http://localhost:3000
+      REDIS_URL: redis://localhost:6379
+      PUBLIC_APP_URL: http://localhost:3000
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: 22, cache: npm}
+      - run: npm ci
+      - run: npm run db:generate && npm run db:migrate && npm run db:seed
+      - run: npm run contracts:check && npm run format:check && npm run lint && npm run typecheck && npm run build:api && npm run build
+      - run: npm audit --audit-level=high && node scripts/release-check.mjs
+      - run: npx playwright install --with-deps chromium
+      - run: |
+          NODE_ENV=development npm run start:api > /tmp/api.log 2>&1 &
+          npm run start:web > /tmp/web.log 2>&1 &
+          node scripts/wait-ready.mjs
+          NODE_ENV=test PC_TEST_PROVIDERS=true PRIVATE_REGISTRATION=true API_PORT=3004 OPENAI_API_KEY=fixture-provider-key GOOGLE_CLIENT_ID=fixture-google-client GOOGLE_CLIENT_SECRET=fixture-google-secret GOOGLE_PLACES_API_KEY=fixture-places-key GOOGLE_PLACES_ENABLED=true GITHUB_WEBHOOK_SECRET=fixture-webhook-secret node --require ./tests/provider-fixture.cjs artifacts/api/main.js > /tmp/providers.log 2>&1 &
+          READY_URL=http://localhost:3004/api/ready node scripts/wait-ready.mjs
+          FIXTURE_API_URL=http://localhost:3004 npm test
+      - run: node scripts/verify-query-plans.mjs && node scripts/verify-scaled-chat.mjs
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with: {name: test-evidence, path: test-results/}

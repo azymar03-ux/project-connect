@@ -1,0 +1,582 @@
+generator client {
+ provider = "prisma-client-js"
+}
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+model User {
+ exportJobs AccountExportJob[]
+ id String @id @default(cuid())
+ email String @unique
+ emailVerifiedAt DateTime?
+ actionTokens AccountToken[]
+ activationRequired Boolean @default(false)
+ passwordSet Boolean @default(true)
+ notifySocial Boolean @default(true)
+ notifyMessages Boolean @default(true)
+ notifyWorkspace Boolean @default(true)
+ passwordHash String
+ name String
+ role String @default("Developer")
+ bio String @default("")
+ education String @default("")
+ portfolioUrl String @default("")
+ city String @default("")
+ skills String[]
+ interests String[]
+ initials String
+ color String @default("purple")
+ avatarId String? @unique
+ avatar PublicImage? @relation("avatar",fields:[avatarId],references:[id],onDelete:Restrict)
+ createdAt DateTime @default(now())
+ projects Project[]
+ memberships Member[]
+ applications Application[]
+ bookmarks Bookmark[]
+ sentConnections Connection[] @relation("sender")
+ receivedConnections Connection[] @relation("receiver")
+ sessions Session[]
+ resources Resource[]
+ resourceVotes ResourceVote[]
+ resourceSaves ResourceSave[]
+ projectMessages ProjectMessage[]
+ messages Message[]
+ suspendedAt DateTime?
+ isAdmin Boolean @default(false)
+ storesSubmitted HardwareStore[]
+ storeFavorites StoreFavorite[]
+ blocksMade Block[] @relation("blocker")
+ blocksReceived Block[] @relation("blocked")
+ reports Report[]
+ aiPlans AiPlan[]
+ aiConversations AiConversation[]
+ aiTurns AiTurn[]
+ projectChatReads ProjectChatRead[]
+ invitations ProjectInvite[] @relation("invitee")
+ followsMade Follow[] @relation("following")
+ followsReceived Follow[] @relation("follower")
+ notifications Notification[]
+ oauthAccounts OAuthAccount[]
+ updates Activity[]
+
+}
+model Project {
+ id String @id @default(cuid())
+ title String
+ description String
+ image String @default("/images/drone.svg")
+ coverImageId String? @unique
+ coverImage PublicImage? @relation("cover",fields:[coverImageId],references:[id],onDelete:Restrict)
+ tags String[]
+ requiredSkills String[]
+ positions String[]
+ category String
+ city String
+ remote Boolean @default(false)
+ status String @default("In progress")
+ teamSize Int @default(5)
+ createdAt DateTime @default(now())
+ ownerId String
+ owner User @relation(fields:[ownerId], references:[id])
+ members Member[]
+ applications Application[]
+ bookmarks Bookmark[]
+ resources ProjectResource[]
+ tasks Task[]
+ milestones Milestone[]
+ messages ProjectMessage[]
+ auditEvents AuditEvent[]
+ updates Activity[]
+ files ProjectFile[]
+ invitations ProjectInvite[]
+ chatReads ProjectChatRead[]
+ githubLink GithubLink?
+ @@index([category,status])
+ @@index([ownerId, id])
+}
+model Member {
+ id String @id @default(cuid())
+ projectId String
+ userId String
+ role String @default("Member")
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ user User @relation(fields:[userId],references:[id])
+ @@unique([projectId,userId])
+ @@index([userId, id])
+}
+model Application {
+ id String @id @default(cuid())
+ projectId String
+ userId String
+ message String
+ status String @default("Pending")
+ createdAt DateTime @default(now())
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ user User @relation(fields:[userId],references:[id])
+ @@unique([projectId,userId])
+ @@index([userId, id])
+}
+model Bookmark {
+ userId String
+ projectId String
+ user User @relation(fields:[userId],references:[id])
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ @@id([userId,projectId])
+}
+model Connection {
+ id String @id @default(cuid())
+ senderId String
+ receiverId String
+ userLowId String
+ userHighId String
+ status String @default("Pending")
+ sender User @relation("sender",fields:[senderId],references:[id])
+ receiver User @relation("receiver",fields:[receiverId],references:[id])
+ createdAt DateTime @default(now())
+ @@unique([senderId,receiverId])
+ @@unique([userLowId,userHighId])
+}
+model Message {
+ id String @id @default(cuid())
+ senderId String
+ receiverId String
+ requestId String?
+ sender User @relation(fields:[senderId],references:[id])
+ content String
+ readAt DateTime?
+ createdAt DateTime @default(now())
+ @@index([senderId,receiverId,createdAt])
+ @@index([senderId,receiverId,createdAt,id])
+ @@unique([senderId,receiverId,requestId])
+ @@index([senderId, id])
+}
+model Session {
+ id String @id @default(cuid())
+ tokenHash String @unique
+ userId String
+ expiresAt DateTime
+ createdAt DateTime @default(now())
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ @@index([userId])
+ @@index([expiresAt])
+}
+model Resource {
+ id String @id @default(cuid())
+ title String
+ description String
+ url String @unique
+ type String
+ tags String[]
+ submittedById String
+ approved Boolean @default(true)
+ createdAt DateTime @default(now())
+ submittedBy User @relation(fields:[submittedById],references:[id])
+ votes ResourceVote[]
+ saves ResourceSave[]
+ projectLinks ProjectResource[]
+ @@index([type,createdAt])
+ @@index([submittedById, id])
+}
+model ResourceVote {
+ userId String
+ resourceId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ resource Resource @relation(fields:[resourceId],references:[id],onDelete:Cascade)
+ @@id([userId,resourceId])
+}
+model ResourceSave {
+ userId String
+ resourceId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ resource Resource @relation(fields:[resourceId],references:[id],onDelete:Cascade)
+ @@id([userId,resourceId])
+}
+model ProjectResource {
+ projectId String
+ resourceId String
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ resource Resource @relation(fields:[resourceId],references:[id],onDelete:Cascade)
+ @@id([projectId,resourceId])
+}
+model Task {
+ id String @id @default(cuid())
+ projectId String
+ title String
+ description String @default("")
+ status String @default("Todo")
+ assigneeId String?
+ dueDate DateTime?
+ labels String[] @default([])
+ version Int @default(1)
+ position Int @default(0)
+ createdAt DateTime @default(now())
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ @@index([projectId,status,position])
+}
+model Milestone {
+ id String @id @default(cuid())
+ projectId String
+ title String
+ completed Boolean @default(false)
+ dueDate DateTime?
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ @@index([projectId])
+}
+model ProjectMessage {
+ id String @id @default(cuid())
+ projectId String
+ senderId String
+ requestId String?
+ content String
+ createdAt DateTime @default(now())
+ sender User @relation(fields:[senderId],references:[id])
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ @@index([projectId,createdAt])
+ @@index([projectId,createdAt,id])
+ @@unique([projectId,senderId,requestId])
+ @@index([senderId, id])
+}
+model AuditEvent {
+ id String @id @default(cuid())
+ actorId String
+ projectId String
+ action String
+ payload Json
+ createdAt DateTime @default(now())
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ @@index([projectId,createdAt])
+}
+
+model AccountToken {
+ id String @id @default(cuid())
+ userId String
+ tokenHash String @unique
+ purpose String
+ expiresAt DateTime
+ usedAt DateTime?
+ createdAt DateTime @default(now())
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ @@index([userId,purpose])
+}
+model EmailOutbox {
+ id String @id @default(cuid())
+ recipient String
+ subject String
+ body String
+ status String @default("Pending")
+ attempts Int @default(0)
+ nextAttemptAt DateTime @default(now())
+ sentAt DateTime?
+ createdAt DateTime @default(now())
+ @@index([status,nextAttemptAt])
+}
+
+model HardwareStore {
+ id String @id @default(cuid())
+ name String
+ address String
+ city String
+ lat Float
+ lng Float
+ phone String @default("")
+ hours String @default("")
+ description String @default("")
+ categories String[]
+ status String @default("Pending")
+ sample Boolean @default(false)
+ submittedById String?
+ createdAt DateTime @default(now())
+ submittedBy User? @relation(fields:[submittedById],references:[id],onDelete:SetNull)
+ favorites StoreFavorite[]
+ @@index([status,lat,lng])
+ @@index([submittedById, id])
+}
+model StoreFavorite {
+ userId String
+ storeId String
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ store HardwareStore @relation(fields:[storeId],references:[id],onDelete:Cascade)
+ @@id([userId,storeId])
+}
+model Block {
+ blockerId String
+ blockedId String
+ createdAt DateTime @default(now())
+ blocker User @relation("blocker",fields:[blockerId],references:[id],onDelete:Cascade)
+ blocked User @relation("blocked",fields:[blockedId],references:[id],onDelete:Cascade)
+ @@id([blockerId,blockedId])
+ @@index([blockedId])
+}
+model Report {
+ id String @id @default(cuid())
+ reporterId String
+ targetType String
+ targetId String
+ reason String
+ status String @default("Pending")
+ createdAt DateTime @default(now())
+ resolvedAt DateTime?
+ reporter User @relation(fields:[reporterId],references:[id],onDelete:Cascade)
+ @@unique([reporterId,targetType,targetId])
+ @@index([status,createdAt])
+ @@index([reporterId, id])
+}
+model AiPlan {
+ quotaLedgered Boolean @default(false)
+ id String @id @default(cuid())
+ userId String
+ projectId String?
+ prompt String
+ source String
+ plan Json
+ createdAt DateTime @default(now())
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ @@index([userId,createdAt])
+ @@index([userId, id])
+}
+
+model ProjectFile {
+ id String @id @default(cuid())
+ projectId String
+ uploaderId String
+ name String
+ mime String
+ size Int
+ storageKey String @unique
+ createdAt DateTime @default(now())
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ @@index([projectId,createdAt])
+ @@index([uploaderId, id])
+}
+model ProjectInvite {
+ id String @id @default(cuid())
+ projectId String
+ userId String
+ inviterId String
+ status String @default("Pending")
+ expiresAt DateTime
+ createdAt DateTime @default(now())
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ user User @relation("invitee",fields:[userId],references:[id],onDelete:Cascade)
+ @@unique([projectId,userId])
+ @@index([userId,status])
+ @@index([inviterId, id])
+}
+
+model Follow {
+ followerId String
+ followingId String
+ createdAt DateTime @default(now())
+ follower User @relation("following",fields:[followerId],references:[id],onDelete:Cascade)
+ following User @relation("follower",fields:[followingId],references:[id],onDelete:Cascade)
+ @@id([followerId,followingId])
+ @@index([followingId])
+}
+model Notification {
+ id String @id @default(cuid())
+ userId String
+ actorId String?
+ kind String
+ title String
+ projectId String?
+ readAt DateTime?
+ createdAt DateTime @default(now())
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ @@index([userId,readAt,createdAt])
+ @@index([userId, id])
+}
+model Activity {
+ id String @id @default(cuid())
+ authorId String
+ projectId String
+ content String
+ hiddenAt DateTime?
+ createdAt DateTime @default(now())
+ author User @relation(fields:[authorId],references:[id],onDelete:Cascade)
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ @@index([authorId,createdAt])
+ @@index([projectId,createdAt])
+ @@index([authorId, id])
+}
+
+model StorageDeletion {
+ storageKey String @id
+ state String @default("pending")
+ dueAt DateTime @default(now())
+ attempts Int @default(0)
+ lastError String?
+ createdAt DateTime @default(now())
+ @@index([dueAt])
+}
+
+model OAuthAccount {
+ id String @id @default(cuid())
+ provider String
+ subject String
+ userId String
+ createdAt DateTime @default(now())
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ @@unique([provider,subject])
+ @@unique([provider,userId])
+}
+model OAuthState {
+ stateHash String @id
+ cookieHash String
+ verifier String
+ nonce String
+ linkUserId String?
+ linkSessionHash String?
+ expiresAt DateTime
+ createdAt DateTime @default(now())
+ @@index([expiresAt])
+}
+
+model AiConversation {
+ id String @id @default(cuid())
+ userId String
+ title String
+ projectId String?
+ createdAt DateTime @default(now())
+ updatedAt DateTime @updatedAt
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ turns AiTurn[]
+ @@index([userId,updatedAt])
+ @@index([userId,createdAt,id])
+ @@index([userId, id])
+}
+model AiTurn {
+ quotaLedgered Boolean @default(false)
+ id String @id @default(cuid())
+ userId String
+ conversationId String?
+ requestId String
+ prompt String
+ content String @default("")
+ status String @default("reserved")
+ source String @default("template")
+ reservedTokens Int @default(14000)
+ actualTokens Int?
+ leaseExpiresAt DateTime
+ createdAt DateTime @default(now())
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ conversation AiConversation? @relation(fields:[conversationId],references:[id],onDelete:SetNull)
+ @@unique([userId,requestId])
+ @@index([userId,createdAt])
+ @@index([status,leaseExpiresAt])
+ @@index([conversationId,createdAt,id])
+ @@index([userId, id])
+}
+model ProjectChatRead {
+ projectId String
+ userId String
+ throughAt DateTime
+ throughId String
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ @@id([projectId,userId])
+}
+model GithubLink {
+ revision String @default(cuid())
+ projectId String @id
+ owner String
+ repo String
+ installationId String?
+ lastDeliveryAt DateTime?
+ project Project @relation(fields:[projectId],references:[id],onDelete:Cascade)
+ @@index([owner,repo,installationId])
+}
+model GithubDelivery {
+ id String @id
+ event String
+ receivedAt DateTime @default(now())
+ @@index([receivedAt])
+}
+model AdminAudit {
+ id String @id @default(cuid())
+ actorId String
+ action String
+ targetId String
+ payload Json
+ createdAt DateTime @default(now())
+ @@index([createdAt])
+}
+
+// Short-lived, non-content usage ledger survives account deletion. HMAC identity.
+model AccountExportJob {
+ expectedPinCount Int?
+ pins AccountExportPin[]
+ id String @id @default(cuid())
+ userId String
+ sessionHash String
+ status String @default("pending")
+ attempts Int @default(0)
+ leaseUntil DateTime?
+ artifactKey String? @unique
+ artifactSize Int?
+ artifactSha256 String?
+ errorCode String?
+ snapshotAt DateTime?
+ createdAt DateTime @default(now())
+ expiresAt DateTime
+ user User @relation(fields:[userId],references:[id],onDelete:Cascade)
+ @@index([userId, createdAt])
+ @@index([status, leaseUntil])
+ @@index([expiresAt])
+}
+
+model AiUsage {
+  id String @id @default(cuid())
+  identityHash String
+  userId String
+  projectId String?
+  reservedMicroUsd BigInt @default(0)
+  units Int @default(1)
+  reservedTokens Int @default(14000)
+  createdAt DateTime @default(now())
+  @@index([identityHash, createdAt])
+  @@index([userId,createdAt])
+  @@index([createdAt])
+  @@index([projectId, createdAt])
+}
+
+model PublicImage {
+ id String @id
+ storageKey String @unique
+ kind String
+ width Int
+ height Int
+ size Int
+ createdAt DateTime @default(now())
+ user User? @relation("avatar")
+ project Project? @relation("cover")
+}
+
+model AccountExportPin {
+ jobId String
+ storageKey String
+ sha256 String
+ size Int
+ path String
+ job AccountExportJob @relation(fields:[jobId],references:[id],onDelete:Cascade)
+ scan StorageScan @relation(fields:[storageKey],references:[storageKey],onDelete:Restrict)
+ @@id([jobId, storageKey])
+ @@index([storageKey])
+}
+
+// Independent of file/image metadata: retired objects remain rescannable while exports pin them.
+model StorageScan {
+ pins AccountExportPin[]
+ generation Int @default(0)
+ storageKey String @id
+ size Int
+ status String @default("pending")
+ sha256 String?
+ scannedAt DateTime?
+ attempts Int @default(0)
+ dueAt DateTime @default(now())
+ leaseUntil DateTime?
+ errorCode String?
+ @@index([status, dueAt])
+}

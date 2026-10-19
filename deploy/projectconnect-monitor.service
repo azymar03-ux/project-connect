@@ -1,0 +1,15 @@
+[Unit]
+Description=ProjectConnect read-only health and queue monitor
+After=network-online.target
+Wants=network-online.target
+# Operator configures OnFailure= or forwards journal to chosen alert system.
+[Service]
+Type=oneshot
+User=projectconnect-monitor
+WorkingDirectory=/opt/projectconnect
+EnvironmentFile=/etc/projectconnect/monitor.env
+ExecStart=/usr/bin/node /opt/projectconnect/scripts/check-operations.mjs
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true

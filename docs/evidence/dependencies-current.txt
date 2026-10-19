@@ -1,0 +1,40 @@
+projectconnect@0.1.0 /home/user/projectconnect
++-- @aws-sdk/client-s3@3.1147.0
++-- @aws-sdk/s3-request-presigner@3.1147.0
++-- @axe-core/playwright@4.13.0
++-- @emnapi/runtime@1.11.3 extraneous
++-- @img/sharp-wasm32@0.35.5 extraneous
++-- @nestjs/common@11.2.7
++-- @nestjs/core@11.2.7
++-- @nestjs/platform-express@11.2.7
++-- @playwright/test@1.64.0
++-- @prisma/client@6.12.0
++-- @types/cookie-parser@1.4.10
++-- @types/express@5.0.6
++-- @types/jsonwebtoken@9.0.10
++-- @types/multer@2.3.0
++-- @types/node@26.6.4
++-- @types/nodemailer@8.0.2
++-- @types/react-dom@19.3.0
++-- @types/react@19.3.0
++-- bcryptjs@3.0.3
++-- cookie-parser@1.4.7
++-- eslint-plugin-react-hooks@7.1.1
++-- eslint@10.12.0
++-- ioredis@6.0.0
++-- jose@6.2.12
++-- jsonwebtoken@9.0.3
++-- lucide-react@1.53.0
++-- next@16.4.0
++-- nodemailer@10.0.16
++-- prisma@6.12.0
++-- react-dom@19.3.0
++-- react@19.3.0
++-- reflect-metadata@0.2.2
++-- rxjs@7.8.2
++-- sharp@0.35.5
++-- tsx@4.23.15
++-- typescript-eslint@8.71.1
++-- typescript@5.9.3
+`-- zod@4.6.5
+

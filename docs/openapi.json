@@ -1,0 +1,5595 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ProjectConnect API",
+    "version": "0.2.0",
+    "description": "Generated registered route inventory. Shared typed contracts currently cover portability/roadmap/sitemap; other payload schemas remain incomplete and this is NOT a fully typed client contract. Public/session optional behavior is described in API.md; conservative cookie security labels do not replace server authorization."
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "paths": {
+    "/api/sitemaps/partitions": {
+      "get": {
+        "operationId": "SitemapsController_partitions",
+        "tags": [
+          "SitemapsController"
+        ],
+        "parameters": [],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/sitemaps/entries": {
+      "get": {
+        "operationId": "SitemapsController_entries",
+        "tags": [
+          "SitemapsController"
+        ],
+        "parameters": [],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/avatar": {
+      "post": {
+        "operationId": "ImagesController_avatar",
+        "tags": [
+          "ImagesController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ImagesController_removeAvatar",
+        "tags": [
+          "ImagesController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/cover": {
+      "post": {
+        "operationId": "ImagesController_cover",
+        "tags": [
+          "ImagesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ImagesController_removeCover",
+        "tags": [
+          "ImagesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/images/{id}": {
+      "get": {
+        "operationId": "ImagesController_image",
+        "tags": [
+          "ImagesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/export/sections": {
+      "get": {
+        "operationId": "ExportController_manifest",
+        "tags": [
+          "ExportController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/export/page": {
+      "get": {
+        "operationId": "ExportController_page",
+        "tags": [
+          "ExportController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/export/jobs": {
+      "post": {
+        "operationId": "ExportJobsController_create",
+        "tags": [
+          "ExportJobsController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "id",
+                    "status",
+                    "expiresAt"
+                  ],
+                  "properties": {
+                    "id": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "enum": [
+                        "pending",
+                        "building",
+                        "ready",
+                        "failed",
+                        "expired"
+                      ]
+                    },
+                    "expiresAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "snapshotAt": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "format": "date-time"
+                    },
+                    "errorCode": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "artifactSize": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "artifactSha256": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "get": {
+        "operationId": "ExportJobsController_list",
+        "tags": [
+          "ExportJobsController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ExportJob"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/export/jobs/{id}": {
+      "delete": {
+        "operationId": "ExportJobsController_remove",
+        "tags": [
+          "ExportJobsController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/export/jobs/{id}/download": {
+      "get": {
+        "operationId": "ExportJobsController_download",
+        "tags": [
+          "ExportJobsController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics",
+            "content": {
+              "application/zip": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/unread": {
+      "get": {
+        "operationId": "ProjectChatController_unread",
+        "tags": [
+          "ProjectChatController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/messages/read": {
+      "patch": {
+        "operationId": "ProjectChatController_read",
+        "tags": [
+          "ProjectChatController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/admin/users": {
+      "get": {
+        "operationId": "AdminUsersController_list",
+        "tags": [
+          "AdminUsersController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/admin/users/{id}": {
+      "patch": {
+        "operationId": "AdminUsersController_suspension",
+        "tags": [
+          "AdminUsersController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/admin/audit": {
+      "get": {
+        "operationId": "AdminUsersController_audit",
+        "tags": [
+          "AdminUsersController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/admin/operations": {
+      "get": {
+        "operationId": "AdminUsersController_operations",
+        "tags": [
+          "AdminUsersController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/github/status": {
+      "get": {
+        "operationId": "GithubWorkspaceController_status",
+        "tags": [
+          "GithubWorkspaceController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/github": {
+      "get": {
+        "operationId": "GithubWorkspaceController_get",
+        "tags": [
+          "GithubWorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "put": {
+        "operationId": "GithubWorkspaceController_link",
+        "tags": [
+          "GithubWorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "GithubWorkspaceController_unlink",
+        "tags": [
+          "GithubWorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/github/activity": {
+      "get": {
+        "operationId": "GithubWorkspaceController_activity",
+        "tags": [
+          "GithubWorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/github/webhook": {
+      "post": {
+        "operationId": "GithubWorkspaceController_webhook",
+        "tags": [
+          "GithubWorkspaceController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/places/status": {
+      "get": {
+        "operationId": "PlacesController_status",
+        "tags": [
+          "PlacesController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/places/search": {
+      "post": {
+        "operationId": "PlacesController_search",
+        "tags": [
+          "PlacesController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/assistant/status": {
+      "get": {
+        "operationId": "AssistantController_status",
+        "tags": [
+          "AssistantController"
+        ],
+        "parameters": [],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/assistant/conversations": {
+      "get": {
+        "operationId": "AssistantController_list",
+        "tags": [
+          "AssistantController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "post": {
+        "operationId": "AssistantController_create",
+        "tags": [
+          "AssistantController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/assistant/conversations/{id}": {
+      "get": {
+        "operationId": "AssistantController_get",
+        "tags": [
+          "AssistantController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "AssistantController_remove",
+        "tags": [
+          "AssistantController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/assistant/turns/{id}/cancel": {
+      "post": {
+        "operationId": "AssistantController_cancel",
+        "tags": [
+          "AssistantController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/assistant/conversations/{id}/messages": {
+      "post": {
+        "operationId": "AssistantController_send",
+        "tags": [
+          "AssistantController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/google/status": {
+      "get": {
+        "operationId": "OAuthController_status",
+        "tags": [
+          "OAuthController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/google/start": {
+      "get": {
+        "operationId": "OAuthController_start",
+        "tags": [
+          "OAuthController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/google/link": {
+      "post": {
+        "operationId": "OAuthController_link",
+        "tags": [
+          "OAuthController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/google/callback": {
+      "get": {
+        "operationId": "OAuthController_callback",
+        "tags": [
+          "OAuthController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/google/account": {
+      "get": {
+        "operationId": "OAuthController_account",
+        "tags": [
+          "OAuthController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "OAuthController_unlink",
+        "tags": [
+          "OAuthController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/discovery/projects": {
+      "get": {
+        "operationId": "DiscoveryController_projects",
+        "tags": [
+          "DiscoveryController"
+        ],
+        "parameters": [],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/discovery/people": {
+      "get": {
+        "operationId": "DiscoveryController_people",
+        "tags": [
+          "DiscoveryController"
+        ],
+        "parameters": [],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/resources": {
+      "get": {
+        "operationId": "ResourcesController_list",
+        "tags": [
+          "ResourcesController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "post": {
+        "operationId": "ResourcesController_create",
+        "tags": [
+          "ResourcesController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/resources/{id}": {
+      "patch": {
+        "operationId": "ResourcesController_edit",
+        "tags": [
+          "ResourcesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ResourcesController_remove",
+        "tags": [
+          "ResourcesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/resources/{id}/vote": {
+      "post": {
+        "operationId": "ResourcesController_vote",
+        "tags": [
+          "ResourcesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/resources/{id}/save": {
+      "post": {
+        "operationId": "ResourcesController_save",
+        "tags": [
+          "ResourcesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/resources/{id}/projects/{projectId}": {
+      "post": {
+        "operationId": "ResourcesController_attach",
+        "tags": [
+          "ResourcesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ResourcesController_detach",
+        "tags": [
+          "ResourcesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}": {
+      "get": {
+        "operationId": "WorkspaceController_get",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/tasks": {
+      "post": {
+        "operationId": "WorkspaceController_create",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/tasks/reorder": {
+      "patch": {
+        "operationId": "WorkspaceController_reorder",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/tasks/{taskId}": {
+      "patch": {
+        "operationId": "WorkspaceController_edit",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "WorkspaceController_remove",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "taskId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/milestones": {
+      "post": {
+        "operationId": "WorkspaceController_milestone",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/milestones/{milestoneId}": {
+      "patch": {
+        "operationId": "WorkspaceController_complete",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "milestoneId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "WorkspaceController_deleteMilestone",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "milestoneId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/messages": {
+      "get": {
+        "operationId": "WorkspaceController_messages",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "post": {
+        "operationId": "WorkspaceController_send",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/project": {
+      "patch": {
+        "operationId": "WorkspaceController_editProject",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "WorkspaceController_deleteProject",
+        "tags": [
+          "WorkspaceController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account": {
+      "get": {
+        "operationId": "AccountController_info",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "AccountController_deleteAccount",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/preferences": {
+      "patch": {
+        "operationId": "AccountController_preferences",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/verification": {
+      "post": {
+        "operationId": "AccountController_sendVerify",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/activation": {
+      "post": {
+        "operationId": "AccountController_resendActivation",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/verify": {
+      "post": {
+        "operationId": "AccountController_verify",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/forgot-password": {
+      "post": {
+        "operationId": "AccountController_forgot",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/reset-password": {
+      "post": {
+        "operationId": "AccountController_reset",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/password": {
+      "post": {
+        "operationId": "AccountController_change",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/export": {
+      "get": {
+        "operationId": "AccountController_exportAccount",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/sessions": {
+      "get": {
+        "operationId": "AccountController_sessions",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/account/sessions/{id}": {
+      "delete": {
+        "operationId": "AccountController_revoke",
+        "tags": [
+          "AccountController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/stores": {
+      "get": {
+        "operationId": "StoresController_list",
+        "tags": [
+          "StoresController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "post": {
+        "operationId": "StoresController_submit",
+        "tags": [
+          "StoresController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/stores/{id}/favorite": {
+      "post": {
+        "operationId": "StoresController_favorite",
+        "tags": [
+          "StoresController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/stores/pending": {
+      "get": {
+        "operationId": "StoresController_pending",
+        "tags": [
+          "StoresController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/stores/{id}/review": {
+      "patch": {
+        "operationId": "StoresController_review",
+        "tags": [
+          "StoresController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/ai/status": {
+      "get": {
+        "operationId": "AiController_status",
+        "tags": [
+          "AiController"
+        ],
+        "parameters": [],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/ai/plans": {
+      "get": {
+        "operationId": "AiController_plans",
+        "tags": [
+          "AiController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/ai/plans/{id}": {
+      "delete": {
+        "operationId": "AiController_remove",
+        "tags": [
+          "AiController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/ai/plan": {
+      "post": {
+        "operationId": "AiController_plan",
+        "tags": [
+          "AiController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/ai/plans/{id}/tasks": {
+      "post": {
+        "operationId": "AiController_toTasks",
+        "tags": [
+          "AiController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/blocks": {
+      "get": {
+        "operationId": "ModerationController_blocks",
+        "tags": [
+          "ModerationController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/blocks/{id}": {
+      "post": {
+        "operationId": "ModerationController_block",
+        "tags": [
+          "ModerationController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "ModerationController_unblock",
+        "tags": [
+          "ModerationController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/reports": {
+      "post": {
+        "operationId": "ModerationController_report",
+        "tags": [
+          "ModerationController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/admin/reports": {
+      "get": {
+        "operationId": "ModerationController_reports",
+        "tags": [
+          "ModerationController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/admin/reports/{id}": {
+      "patch": {
+        "operationId": "ModerationController_resolve",
+        "tags": [
+          "ModerationController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/admin/overview": {
+      "get": {
+        "operationId": "ModerationController_overview",
+        "tags": [
+          "ModerationController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/team/{userId}": {
+      "patch": {
+        "operationId": "TeamController_role",
+        "tags": [
+          "TeamController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "delete": {
+        "operationId": "TeamController_remove",
+        "tags": [
+          "TeamController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/team/leave": {
+      "post": {
+        "operationId": "TeamController_leave",
+        "tags": [
+          "TeamController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/team/transfer": {
+      "post": {
+        "operationId": "TeamController_transfer",
+        "tags": [
+          "TeamController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/resources/{id}/github-metadata": {
+      "post": {
+        "operationId": "GithubController_metadata",
+        "tags": [
+          "GithubController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/files": {
+      "get": {
+        "operationId": "FilesController_list",
+        "tags": [
+          "FilesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "post": {
+        "operationId": "FilesController_upload",
+        "tags": [
+          "FilesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/files/{fileId}/download": {
+      "get": {
+        "operationId": "FilesController_download",
+        "tags": [
+          "FilesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/files/{fileId}": {
+      "delete": {
+        "operationId": "FilesController_remove",
+        "tags": [
+          "FilesController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fileId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/invitations": {
+      "get": {
+        "operationId": "InvitationController_mine",
+        "tags": [
+          "InvitationController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/invitations": {
+      "get": {
+        "operationId": "InvitationController_sent",
+        "tags": [
+          "InvitationController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "post": {
+        "operationId": "InvitationController_invite",
+        "tags": [
+          "InvitationController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/invitations/{inviteId}/cancel": {
+      "patch": {
+        "operationId": "InvitationController_cancel",
+        "tags": [
+          "InvitationController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "inviteId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/invitations/{id}": {
+      "patch": {
+        "operationId": "InvitationController_respond",
+        "tags": [
+          "InvitationController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/follows/{id}": {
+      "post": {
+        "operationId": "SocialController_follow",
+        "tags": [
+          "SocialController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/profiles/{id}": {
+      "get": {
+        "operationId": "SocialController_profile",
+        "tags": [
+          "SocialController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/feed": {
+      "get": {
+        "operationId": "SocialController_feed",
+        "tags": [
+          "SocialController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/workspaces/{id}/updates": {
+      "post": {
+        "operationId": "SocialController_update",
+        "tags": [
+          "SocialController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/feed/{id}": {
+      "delete": {
+        "operationId": "SocialController_remove",
+        "tags": [
+          "SocialController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/notifications": {
+      "get": {
+        "operationId": "SocialController_notifications",
+        "tags": [
+          "SocialController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/unread": {
+      "get": {
+        "operationId": "SocialController_unread",
+        "tags": [
+          "SocialController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/notifications/read-all": {
+      "patch": {
+        "operationId": "SocialController_readAll",
+        "tags": [
+          "SocialController"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/notifications/{id}": {
+      "patch": {
+        "operationId": "SocialController_read",
+        "tags": [
+          "SocialController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/messages/{id}/read": {
+      "patch": {
+        "operationId": "SocialController_readMessages",
+        "tags": [
+          "SocialController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/connections/{id}": {
+      "delete": {
+        "operationId": "SocialController_dismiss",
+        "tags": [
+          "SocialController"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "post": {
+        "operationId": "Api_connect",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "Api_accept",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/health": {
+      "get": {
+        "operationId": "Api_health",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/ready": {
+      "get": {
+        "operationId": "Api_ready",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "operationId": "Api_login",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/register": {
+      "post": {
+        "operationId": "Api_register",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "operationId": "Api_logout",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/logout-all": {
+      "post": {
+        "operationId": "Api_logoutAll",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/me": {
+      "get": {
+        "operationId": "Api_me",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "patch": {
+        "operationId": "Api_update",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/projects": {
+      "get": {
+        "operationId": "Api_projects",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "post": {
+        "operationId": "Api_create",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/bookmark": {
+      "post": {
+        "operationId": "Api_bookmark",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/projects/{id}": {
+      "get": {
+        "operationId": "Api_project",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/apply": {
+      "post": {
+        "operationId": "Api_apply",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/projects/{id}/application": {
+      "delete": {
+        "operationId": "Api_cancelApplication",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/applications": {
+      "get": {
+        "operationId": "Api_applications",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/applications/{id}": {
+      "patch": {
+        "operationId": "Api_review",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/people": {
+      "get": {
+        "operationId": "Api_people",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    },
+    "/api/messages/{id}": {
+      "get": {
+        "operationId": "Api_messages",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "200": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      },
+      "post": {
+        "operationId": "Api_send",
+        "tags": [
+          "Api"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "security": [
+          {
+            "sessionCookie": []
+          }
+        ],
+        "x-schema-coverage": "route inventory; payload schema unmodeled unless overridden",
+        "responses": {
+          "201": {
+            "description": "Successful response; see docs/API.md for payload semantics"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "401": {
+            "description": "Session required or expired"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "429": {
+            "description": "Rate or budget limit"
+          },
+          "503": {
+            "description": "Protection/provider temporarily unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "sessionCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "pc_session"
+      }
+    },
+    "schemas": {
+      "ExportJob": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "expiresAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "building",
+              "ready",
+              "failed",
+              "expired"
+            ]
+          },
+          "expiresAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "snapshotAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "errorCode": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "artifactSize": {
+            "type": [
+              "integer",
+              "null"
+            ]
+          },
+          "artifactSha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "ErrorEnvelope": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "code": {
+            "type": "string"
+          },
+          "requestId": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

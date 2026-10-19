@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ProjectConnect — End-to-End Flow for Beginners</title>
+<style>
+  :root{
+    --ink:#122a3a; --soft:#41627a; --line:#c8d8e4; --paper:#f4f8fb; --card:#ffffff;
+    --blue:#1d5fd8; --green:#0c7a4d; --amber:#9a6400; --purple:#6d3bc9; --teal:#0b7285; --red:#b3261e;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font:15px/1.55 -apple-system,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;}
+  .wrap{max-width:880px;margin:0 auto;padding:28px 18px 80px}
+  h1{font-size:26px;margin:0 0 6px}
+  .sub{color:var(--soft);margin:0 0 22px}
+  h2{font-size:19px;margin:44px 0 4px;display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;
+    border-radius:9px;color:#fff;font-size:14px;flex:0 0 auto}
+  .why{color:var(--soft);margin:0 0 16px;font-size:14px}
+  .sec-blue h2 .n{background:var(--blue)} .sec-green h2 .n{background:var(--green)}
+  .sec-amber h2 .n{background:var(--amber)} .sec-purple h2 .n{background:var(--purple)}
+  .sec-teal h2 .n{background:var(--teal)} .sec-red h2 .n{background:var(--red)}
+  .flow{display:flex;flex-direction:column;gap:0}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .row .box{flex:1 1 150px}
+  .box{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:10px 13px;position:relative}
+  .box b{display:block;font-size:14.5px}
+  .box small{color:var(--soft);font-size:12.8px;display:block;margin-top:2px}
+  .tag{display:inline-block;font:11.5px/1.35 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:#eef4f9;border:1px solid var(--line);border-radius:6px;padding:1px 6px;margin:5px 4px 0 0;color:#2a4a63}
+  .sec-blue .box{border-left:5px solid var(--blue)} .sec-green .box{border-left:5px solid var(--green)}
+  .sec-amber .box{border-left:5px solid var(--amber)} .sec-purple .box{border-left:5px solid var(--purple)}
+  .sec-teal .box{border-left:5px solid var(--teal)} .sec-red .box{border-left:5px solid var(--red)}
+  .down{align-self:center;color:var(--soft);font-size:15px;line-height:1;padding:5px 0;display:flex;flex-direction:column;align-items:center}
+  .down em{font-style:normal;font-size:11.5px;background:#e8eef4;border-radius:99px;padding:1px 9px;margin-top:1px;color:#31506a}
+  .split{display:flex;gap:10px;width:100%;align-items:stretch}
+  .split .box{flex:1}
+  .yes{border-left:5px solid var(--green)!important} .no{border-left:5px solid var(--red)!important}
+  .pill{font-size:12px;color:#fff;border-radius:99px;padding:1px 10px;align-self:center}
+  .note{background:#fff8e8;border:1.5px solid #e7d5a8;border-radius:12px;padding:10px 13px;font-size:13.5px;margin-top:12px}
+  .note b{color:#7a5800}
+  .files{margin-top:10px;font-size:13px;color:var(--soft)}
+  .files code, code{font:12.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#eef4f9;border-radius:5px;padding:0 4px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;font-size:13.5px;color:var(--soft)}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden}
+  th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+  th{background:#eaf1f7;font-size:13px}
+  .arch{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch}
+  .arch .box{flex:1 1 160px;border-left-width:1.5px}
+  .arrow{align-self:center;color:var(--soft);font-size:18px}
+  .side{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .side .box{flex:1 1 200px;border-style:dashed;font-size:13px}
+  footer{margin-top:52px;color:var(--soft);font-size:13px;border-top:1.5px solid var(--line);padding-top:14px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>ProjectConnect — the whole journey, start to finish</h1>
+  <p class="sub">A flowchart for a beginner developer. Top to bottom, each box = one real step in this codebase.<br>
+  <b>How to read:</b> follow the ↓ arrows. Grey chips are the <b>routes/requests</b>. Files are in the line under each diagram.</p>
+
+  <div class="legend">
+    <span><b>Browser</b> = what users see</span><span><b>API</b> = the back-end that owns all rules</span>
+    <span><b>Prisma</b> = type-safe database access</span><span><b>Cookie</b> = proof-of-who-you-are after login</span>
+  </div>
+
+  <!-- 0 ARCHITECTURE -->
+  <div class="sec-blue">
+  <h2><span class="n">0</span>The big picture — who talks to whom</h2>
+  <p class="why">The browser never touches the database. Every request walks this chain:</p>
+  <div class="arch">
+    <div class="box"><b>Browser</b><small>React UI, one big <code>page.tsx</code> + components</small></div>
+    <span class="arrow">→</span>
+    <div class="box"><b>Next.js :3000</b><small>renders the page, forwards /api</small><span class="tag">next.config.ts rewrite</span></div>
+    <span class="arrow">→</span>
+    <div class="box"><b>NestJS API :3001</b><small>validation · auth · rules · responses</small></div>
+    <span class="arrow">→</span>
+    <div class="box"><b>Prisma → PostgreSQL</b><small>43 tables, all data lives here</small><span class="tag">schema.prisma</span></div>
+  </div>
+  <div class="side">
+    <div class="box"><b>Redis</b><small>rate limiting (anti-spam counters)</small></div>
+    <div class="box"><b>Mail queue + SMTP</b><small>activation & notification emails</small></div>
+    <div class="box"><b>ClamAV</b><small>virus scan for every upload</small></div>
+    <div class="box"><b>Google</b><small>OAuth sign-in · Places “nearby” (server-side key)</small></div>
+  </div>
+</div>
+
+  <!-- 1 ARRIVAL -->
+  <div class="sec-teal">
+  <h2><span class="n">1</span>A visitor arrives (logged out)</h2>
+  <div class="flow">
+    <div class="box"><b>GET / — page renders on the server</b><small>Next.js runs <code>apps/web/app/page.tsx</code></small></div>
+    <div class="down">↓</div>
+    <div class="split">
+      <div class="box"><b>GET /api/projects</b><small>public list of project cards → works for everyone</small></div>
+      <div class="box"><b>GET /api/me</b><small>no cookie → <b>401</b>… which is NORMAL. UI flips to “guest mode” with a Sign-in button</small></div>
+    </div>
+  </div>
+  <p class="files">Back-end: <code>apps/api/src/main.ts</code> · <code>@Get("projects")</code> <code>@Get("me")</code></p>
+  </div>
+
+  <!-- 2 REGISTER -->
+  <div class="sec-blue">
+  <h2><span class="n">2</span>Creating an account</h2>
+  <div class="flow">
+    <div class="box"><b>Register form submitted</b><span class="tag">POST /api/auth/register</span></div>
+    <div class="down">↓<em>shape check</em></div>
+    <div class="box"><b>zod validation + bcrypt password hash</b><small>the plain password is never stored</small></div>
+    <div class="down">↓</div>
+    <div class="box"><b>User row saved — status INACTIVE</b><small>an attacker can’t skip email by forging the status field: input DTOs don’t include it</small></div>
+    <div class="down">↓<em>queue → SMTP</em></div>
+    <div class="box"><b>Activation email with one-time token</b><span class="tag">POST /api/account/verify</span></div>
+    <div class="down">↓<em>link clicked</em></div>
+    <div class="box yes"><b>Active → sign in</b><small>dev data: <code>prisma/seed.ts</code> creates sample profiles (blocked in production) — the one-click demo login was removed 18 Oct</small></div>
+  </div>
+  <p class="files">Files: <code>apps/api/src/main.ts</code> · <code>apps/api/src/core/security.ts</code> · <code>apps/api/src/core/mail.ts</code> · <code>prisma/seed.ts</code></p>
+  </div>
+
+  <!-- 3 LOGIN -->
+  <div class="sec-amber">
+  <h2><span class="n">3</span>Login → the session cookie (heart of the app)</h2>
+  <div class="flow">
+    <div class="box"><b>POST /api/auth/login</b><small>browser sends email + password + its Origin header</small></div>
+    <div class="down">↓<em>gauntlet 1</em></div>
+    <div class="box"><b>Exact-origin CSRF check</b><small>Origin must match APP_ORIGINS (sandbox preview URL is allow-listed in dev)</small></div>
+    <div class="down">↓<em>gauntlet 2–3</em></div>
+    <div class="box"><b>Rate limit (Redis) → bcrypt compare → session row (hashed token)</b></div>
+    <div class="down">↓</div>
+    <div class="box"><b>Set-Cookie: pc_session</b><small>HttpOnly · path=/ · Secure in production · SameSite=Lax · (preview embed = None + Partitioned)</small></div>
+    <div class="down">↓<em>browser attaches it automatically, forever after</em></div>
+    <div class="box yes"><b>Every later request → guard reads cookie → knows you</b></div>
+    <div class="down">↓</div>
+    <div class="box no"><b>403 ORIGIN_FORBIDDEN / 401</b><small>bad origin or bad credentials → generic message, no hints about which one</small></div>
+  </div>
+  <div class="note"><b>Real bug, real lesson:</b> the demo “not working” in the preview was <i>this first box</i> — the preview’s HTTPS domain wasn’t allowed, so the login POST was refused. Debug flow: open DevTools → Network → look at the status code → match it to this diagram.</div>
+  <p class="files">Files: <code>apps/api/src/core/security.ts</code> · <code>apps/api/src/core/preview-config.ts</code> · <code>apps/api/src/core/rate-limit.ts</code> · Google route: <code>apps/api/src/features/oauth.ts</code> (start → Google → callback → same cookie)</p>
+  </div>
+
+  <!-- 4 CORE LOOP -->
+  <div class="sec-green">
+  <h2><span class="n">4</span>The core product loop — find a team, join a team</h2>
+  <div class="flow">
+    <div class="box"><b>Browse · search · filter cards</b><small>categories, skills, location — UI state in <code>page.tsx</code></small></div>
+    <div class="down">↓</div>
+    <div class="box"><b>Open a project</b><span class="tag">GET /api/projects/:id</span></div>
+    <div class="down">↓</div>
+    <div class="box"><b>Apply with a message + what you bring</b><span class="tag">POST /api/projects/:id/apply</span></div>
+    <div class="down">↓</div>
+    <div class="box"><b>Owner reviews applications</b><span class="tag">GET /api/applications</span><span class="tag">PATCH /api/applications/:id</span></div>
+    <div class="down">↓<em>accept</em></div>
+    <div class="box"><b>Both sides become connections → chat opens</b><span class="tag">GET+POST /api/messages/:id</span></div>
+    <div class="down">↓</div>
+    <div class="box"><b>…then the extras orbit: bookmarks, feed, invitations, team, workspace files, GitHub links</b><small>same pattern: component → /api route → guard → Prisma</small></div>
+  </div>
+  <p class="files">Files: <code>apps/api/src/main.ts</code> · <code>apps/api/src/features/social.ts</code> · <code>apps/web/app/components/Invitations.tsx</code>, <code>Workspace.tsx</code></p>
+  </div>
+
+  <!-- 5 IMAGES -->
+  <div class="sec-purple">
+  <h2><span class="n">5</span>Uploading an image (avatar / project photo)</h2>
+  <p class="why">The most mysterious feature for beginners — here is every gate it passes:</p>
+  <div class="flow">
+    <div class="box"><b>Pick file in the upload box</b><small><code>ImageUpload.tsx</code> checks type + size, sends immediately</small><span class="tag">POST /api/account/avatar (or projects/…/images)</span></div>
+    <div class="down">↓<em>server never trusts the client</em></div>
+    <div class="box"><b>Magic-bytes recheck + real image dimensions</b><small>a .jpg renamed from .exe dies here</small></div>
+    <div class="down">↓</div>
+    <div class="box"><b>Temp file → ClamAV scan</b><small>persistently queued so a crash can’t skip it</small></div>
+    <div class="down">↓</div>
+    <div class="split">
+      <div class="box no"><b>Infected / failed → 400</b><small>never stored, never served</small></div>
+      <div class="box yes"><b>Clean → durable storage + SHA-256 digest</b><small>DB links it: <code>avatarId</code> / project imageId</small></div>
+    </div>
+    <div class="down">↓</div>
+    <div class="box"><b>Client refetches → gets the server URL</b><span class="tag">GET /api/images/:id (audience-checked)</span></div>
+    <div class="down">↓</div>
+    <div class="box"><b><code>PreviewImage</code> renders: loading · OK · failed + Retry</b><small>“still scanning” or “quarantined” shows a clean message, never a broken-image icon</small></div>
+  </div>
+  <div class="note"><b>Beginner insight:</b> the thumbnail you picked lives only in your RAM. What you see <i>after saving</i> always comes back from the server. So a “preview not working” report means: check upload response, then <code>/api/images/:id</code> status, then cookie/origin — in that order.</div>
+  <p class="files">Files: <code>apps/web/app/components/ImageUpload.tsx</code>, <code>PreviewImage.tsx</code> · <code>apps/api/src/features/images.ts</code> · <code>apps/api/src/core/file-scanner.ts</code>, <code>storage-scan.ts</code>, <code>public-image.ts</code></p>
+  </div>
+
+  <!-- 6 SECURITY GAUNTLET -->
+  <div class="sec-red">
+  <h2><span class="n">6</span>Every write request runs the same gauntlet</h2>
+  <div class="flow">
+    <div class="box"><b>CSP + security headers</b><small>next.config.ts (frame-ancestors, img-src, …)</small></div>
+    <div class="down">→</div>
+    <div class="box"><b>Rate limit</b><small>core/rate-limit.ts + Redis</small></div>
+    <div class="down">→</div>
+    <div class="box"><b>Exact-origin CSRF</b><small>core/security.ts</small></div>
+    <div class="down">→</div>
+    <div class="box"><b>Session cookie → user</b></div>
+    <div class="down">→</div>
+    <div class="box"><b>zod validation</b></div>
+    <div class="down">→</div>
+    <div class="box"><b>Prisma (parameterized)</b></div>
+    <div class="down">→</div>
+    <div class="box"><b>DTO response</b><small>never leaks password hashes or tokens</small></div>
+  </div>
+  </div>
+
+  <!-- 7 SHIP -->
+  <div class="sec-teal">
+  <h2><span class="n">7</span>Run it & ship it</h2>
+  <div class="flow">
+    <div class="box"><b>1 · Install & services</b><small><code>npm install</code> · Docker Postgres + Redis</small></div>
+    <div class="down">↓</div>
+    <div class="box"><b>2 · Database shape</b><small><code>prisma migrate</code> (25 numbered migrations) · dev: <code>npm run db:seed</code></small></div>
+    <div class="down">↓</div>
+    <div class="box"><b>3 · Run both servers</b><small><code>npm run start:api</code> :3001 → <code>npm run start:web</code> :3000 (web needs INTERNAL_API_URL)</small></div>
+    <div class="down">↓</div>
+    <div class="box"><b>4 · Prove it works</b><small><code>npm test</code> (118) · build · lint · <code>scripts/verify-production-smoke.mjs</code></small></div>
+    <div class="down">↓</div>
+    <div class="box"><b>5 · Staging env</b><small>DATABASE_URL · APP_ORIGINS=https://yourdomain · SESSION/CSRF secrets · SMTP · GOOGLE_CLIENT/SECRET/PLACES · CLAMD · AI key · PUBLIC_APP_URL</small></div>
+    <div class="down">↓</div>
+    <div class="box"><b>6 · Ops</b><small>backup procedure per <code>docs/OPERATIONS.md</code> (encrypted pg_dump + object store; restore rehearsed by <code>verify-local-recovery.mjs</code>) · health /api/ready · systemd monitor timer</small></div>
+    <div class="down">↓</div>
+    <div class="box"><b>7 · Launch checklist</b><small><code>LAUNCH_HANDOFF.md</code> — domain, HTTPS, CSP, moderation rota, support desk</small></div>
+  </div>
+  </div>
+
+  <footer>
+    <b>Five words that unlock everything:</b> <b>API</b> (rule-owning back end) · <b>cookie</b> (proof you’re logged in) ·
+    <b>ORM</b> (typesafe DB access) · <b>migration</b> (replayable DB change) · <b>CSRF origin check</b> (reject writes from unapproved sites).<br><br>
+    Diagrams also available as Mermaid in <code>docs/BEGINNER_FLOWCHART.md</code> (paste into GitHub/Notion to render).
+  </footer>
+</div>
+</body>
+</html>
